@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+</head>
+<body>
+    <!-- navbar start-->
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="scifiUI">
+        <h1>Dropdown</h1>
+        <ul>
+            
+          <li><a href="index.html" style="text-decoration: none;color: inherit; " >Home</a></li>
+          <li><a href="index.html" style="text-decoration: none;color: inherit; ">About</a></li>
+          <li><a href="index.html" style="text-decoration: none;color: inherit; ">Academics</a></li>
+          <li><a href="index.html" style="text-decoration: none;color: inherit; ">Skills</a></li>
+          <li><a href="index.html" style="text-decoration: none;color: inherit; ">Projetcs</a></li>
+          <li><a href="index.html" style="text-decoration: none;color: inherit; ">Achivements</a></li>
+          <li><a href="contact.html" style="text-decoration: none;color: inherit; ">Contact us</a></li>
+        </ul>
+      </div>
+  </div>
+<!-- navbar end-->
+<span class="glowmenu" onclick="openNav()">&#9776; Menu</span>
+
+<div>
+    <h3 class="contacthead">Contact me</h3>
+    <div class="maxcontainer">
+        
+
+        <div class="scifiUI2">
+            <form  method="POST" autocomplete="off" name="google-sheet">
+                <label for="name" ><b>Your Name</b></label>
+                <input type="text" id="name" name="name" placeholder="Your name..">
+
+                <label for="email"><b>Your Email</b></label>
+                <input type="text" id="email" name="email" placeholder="Your Email..">
+
+                <label for="Messege"><b>Messege</b></label>
+
+                <textarea type="text" id="textInput" name="Messege" placeholder="Write something.." style="height:200px"></textarea>
+                <button class="btn btn--radius-2 btn--red" type="submit" name="submit">Submit</button>
+            </form>
+        </div>
+</div>
+</div>
+    
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.7/dist/sweetalert2.all.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="javascript/navbar.js"></script>
+    
+    <!-- Main JS-->
+    <script src="js/global.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbw42hqwTUNYU-fwPRr9ZIfMwHa1bzVCJ1bkVSqHrdkvEXCA2fEoS9g1M1IcnagZLsej/exec'
+        const form = document.forms['google-sheet']
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    showConfirmButton: false,
+                    timer: 2000
+                }))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>
